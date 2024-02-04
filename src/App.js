@@ -7,14 +7,14 @@ import EditCustomer from './Components/EditCustomer/EdditCustomer'
 
 const App = () => {
   return (
-    <div>
+    <>
       <Routes>
         <Route path="/" element={<LogIn/>}/>
         <Route path="/dashboard" element={<DashBoard/>}/>
         <Route path="/addCustomer" element={<AddCustomer/>}/>
         <Route path="/editCustomer" element={<EditCustomer/>}/>
       </Routes> 
-    </div>
+    </>
   )
 }
 

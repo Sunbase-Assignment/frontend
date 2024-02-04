@@ -1,16 +1,26 @@
 
 .log-in-div{
     width: 400px;
-    height: 60vh;
+    height: 50vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-items: center;
     border: 2px solid rgb(219,219,219);
+    background-color:  rgb(37, 36, 36);
+    color: white;
 }
-
+.logo{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .logo>p{
     text-align: center;
-    font-size: large;
+    font-size: 24px;
+    font-weight: 700;
+    color: rgb(0, 149, 246);
 }
 
 .input-div{
@@ -54,4 +64,5 @@
     color: white;
     position: relative;
     text-align: center;
+    cursor: pointer;
 }

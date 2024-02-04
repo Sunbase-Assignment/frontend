@@ -50,9 +50,13 @@ const LogIn = ()=>{
                 setUser({email: "", password: ""}),
                 alert("User Logged in successully"),
                 navigate("/dashboard")
-            ));
+            ))
+            .catch((err)=>{
+                console.log(err)
+                alert("Invalid username or password")
+            });
         } catch (error) {
-            alert(error.response.data.message);
+            alert(error);
         }
 
     }

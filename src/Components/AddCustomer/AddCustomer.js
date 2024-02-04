@@ -63,7 +63,7 @@ const AddCustomer = () => {
                 alert("Customer added Successfully")
                 navigate("/dashboard")
             })
-            .catch((err)=>console.log(err));
+            .catch((err)=>alert(err));
         } catch (error) {
             alert(error);
         }
@@ -94,8 +94,8 @@ const AddCustomer = () => {
                 </div>
             </div>
             <div className='btns'>
-            <button className='save-btn' onClick={handleCancel}>Cancel</button>
-            <button className='save-btn' type='submit'>Save</button>
+            <button className='save-btn cancel' onClick={handleCancel}>Cancel</button>
+            <button className='save-btn save' type='submit'>Save</button>
             </div>
         </form>
     </div>

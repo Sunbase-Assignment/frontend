@@ -1,9 +1,12 @@
 .customer-list-page{
-    width: 100%;
+    width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    border: 1px solid white !important;
+    background-color:  rgb(37, 36, 36);
+    color: white;
 }
 
 .options{
@@ -17,17 +20,86 @@
 .customer-btn{
     width: 30%;
     padding: 0.25rem;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 5px;
 }
 
 
 .table{
-    width: 80%;
+    width: 100%;
     border-collapse: collapse;
     color: white;
-    background-color: black;
+    background-color: rgb(37, 36, 36);
 }
 
 .actions{
     display: flex;
     gap: 0.5rem;
+}
+
+.log-out{
+    width: 8%;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 5px;
+}
+
+.pagenation{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+    color: white;
+}
+
+.prev-next-btn{
+    width: 5%;
+    color: white;
+    border: 1px solid white;
+    background-color: rgb(37, 36, 36);
+    cursor: pointer;
+}
+
+.prev-next-btn:hover{
+    background-color: rgb(5, 7, 158);
+    transition: all 0.3s;
+}
+
+.page-btn{
+    color: white;
+    background-color: rgb(37, 36, 36);
+    border: 1px solid white;
+    cursor: pointer;
+}
+
+.page-btn:hover{
+    background-color: rgb(5, 7, 158);
+    transition: all 0.3s;
+}
+
+.active{
+    background-color: rgb(5, 7, 158)!important;
+    color: white;
+}
+
+.disabled{
+    opacity: 0.5;
+    width: 5%;
+    color: white;
+    border: 1px solid white;
+    background-color: rgb(37, 36, 36);
+    cursor: pointer;
+}
+
+.no-data{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+    color: white;
+    font-size: 24px;
+    font-weight: 500;
 }

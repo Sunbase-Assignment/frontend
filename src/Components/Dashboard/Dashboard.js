@@ -1,4 +1,4 @@
-import axios from 'axios';
+
 import React, { useContext, useEffect, useState } from 'react';
 import UserContext from '../../Context/UserContext';
 import { useNavigate } from 'react-router-dom';
@@ -17,6 +17,7 @@ const DashBoard = ()=>{
     const {setEditCustomer} = useContext(UserContext);
     const navigate = useNavigate();
 
+    console.log(searchTerm)
     useEffect(()=>{
         if(token === ""){
             let token_from_local_storage = localStorage.getItem("token");
@@ -30,13 +31,13 @@ const DashBoard = ()=>{
 
     useEffect(()=>{
         getCustomerList();
-    });
+    },[searchTerm,currentPage,selectedValue]);
 
     async function getCustomerList(){
-
+        
         try {
-            
-            fetch(`http://localhost:8080/customer/listOfCustomers?page=${currentPage}&searchBy=${selectedValue}&searchTerm=${searchTerm}&size=5`, {
+            console.log(`http://localhost:8080/customer/listOfCustomers?page=${searchTerm? 0 : currentPage}${selectedValue && searchTerm ? `&searchBy=${selectedValue}&searchTerm=${searchTerm}` : ''}&size=5`);
+            fetch(`http://localhost:8080/customer/listOfCustomers?page=${searchTerm? 0 : currentPage}${selectedValue && searchTerm ? `&searchBy=${selectedValue}&searchTerm=${searchTerm}` : ''}&size=5`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json',
                         'Authorization': `Bearer ${token}`
@@ -59,31 +60,49 @@ const DashBoard = ()=>{
      async function handleDelete(id){
         console.log(id);
         console.log(token);
-        try {
-            
-            fetch(`http://localhost:8080/customer/deleteCustomer?id=${id}`, {
-            method: 'DELETE',
-            headers: { 'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                }
-            })
-            .then((res)=>{
+        /* eslint-disable no-restricted-globals */
+        let userConfirmed = confirm("Are you sure you want to delete this customer? Data will be permanently deleted");
+        /* eslint-enable no-restricted-globals */
 
-                console.log(res);
-                getCustomerList();
-            });
-        } catch (error) {
-            alert(error);
+        if(userConfirmed){
+            try {
+            
+                fetch(`http://localhost:8080/customer/deleteCustomer?id=${id}`, {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                    }
+                })
+                .then((res)=>{
+    
+                    console.log(res)
+                    getCustomerList();
+                });
+            } catch (error) {
+                alert(error);
+            }
         }
+        else{
+            return;
+        }
+        
+
      }
+
 
      function handlelogOut(){
         setToken('');
         localStorage.removeItem("token");
+        setSearchTerm('');
+        setSelectedValue('');
         navigate("/");
      }
 
      function handlePageChange(pageNo){
+        setCurrentPage(pageNo);
+     }
+
+     function handlePageChangeByPage(pageNo){
         setCurrentPage(pageNo);
      }
 
@@ -132,7 +151,8 @@ const DashBoard = ()=>{
             console.log('Data added to the database successfully');
             alert("Data synced successfully");
         } catch (error) {
-            console.error(error);
+            console.log(error);
+            alert(error)
         }
      }
 
@@ -142,7 +162,7 @@ const DashBoard = ()=>{
         <div className='customer-list-page'>
             <h1>Customer List</h1>
             <div className='options'>
-                <button className='customer-btn' onClick={()=>(navigate("/addCustomer"))}>Add Customer</button>
+                <button className='customer-btn save' onClick={()=>(navigate("/addCustomer"))}>Add Customer</button>
                 <select className='customer-btn' value={selectedValue} onChange={(e)=> setSelectedValue(e.target.value)} >
                     <option value="" disabled selected hidden>Search by</option>
                     <option value='firstname'>firstname</option>
@@ -158,7 +178,7 @@ const DashBoard = ()=>{
                 disabled ={selectedValue?false:true}
                 className='customer-btn'
                 />
-                <button className='customer-btn' onClick={handleSync}>Sync</button>
+                <button className='customer-btn sync' onClick={handleSync}>Sync</button>
             </div>
             <table border={1} className='table'>
                 <thead>
@@ -185,29 +205,35 @@ const DashBoard = ()=>{
                             <td>{customer.email}</td>
                             <td>{customer.phone}</td>
                             <td className='actions'>
-                                <button onClick={()=>(handleEdit(customer))}>Edit</button>
-                                <button onClick={()=>(handleDelete(customer.uuid))}>Delete</button>
+                                <button className='cancel' onClick={()=>(handleEdit(customer))}>Edit</button>
+                                <button className='delete' onClick={()=>(handleDelete(customer.uuid))}>X</button>
                             </td>
                         </tr>
                     ))
                 }
                 </tbody>
             </table>
-            <div>
-                <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 0}>
-                Previous
-                </button>
-                {Array.from({ length: totalPages }, (_, index) => (
-                <button key={index + 1} onClick={() => handlePageChange(index)}>
-                    {index+1}
-                </button>
-                ))}
-                <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages-1}>
-                Next
-                </button>
-           </div>
+            {
+               customerList.length > 0 ? (
+                <div className='pagenation'>
+                    <button className= {currentPage === 0 ? 'disabled' : 'prev-next-btn'} onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 0}>
+                    Prev
+                    </button>
+                    {Array.from({ length: totalPages }, (_, index) => (
+                    <button className={`page-btn ${index === currentPage ? 'active' : ''}`} key={index + 1} onClick={() => handlePageChangeByPage(index)}>
+                        {index+1}
+                    </button>
+                    ))}
+                    <button className={currentPage === totalPages-1 ? 'disabled' : 'prev-next-btn'} onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages-1}>
+                    Next
+                    </button>
+                </div>
+               ) : (
+                <p className='no-data'>No data found </p>
+               )
+            }
 
-            <button onClick={handlelogOut}>LogOut</button>  
+            <button className='log-out delete' onClick={handlelogOut}>LogOut</button>  
         </div>
     )
 }
