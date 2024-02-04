@@ -93,7 +93,7 @@ const DashBoard = ()=>{
             const authResponse = await fetch('https://qa.sunbasedata.com/sunbase/portal/api/assignment_auth.jsp',{
                                 method: 'POST',
                                 headers: {
-                                    'Access-Control-Allow-Origin': 'http://localhost:3000',
+                                    'Access-Control-Allow-Origin': '*',
                                     'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
                                     "Access-Control-Allow-Headers": "Content-Type, Authorization",
                                     "Access-Control-Allow-Credentials":"true",
@@ -113,6 +113,7 @@ const DashBoard = ()=>{
                                     'Content-Type': 'application/json',
                                     'Access-Control-Allow-Origin': '*',
                                     'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
+                                    "Access-Control-Allow-Headers": "Content-Type, Authorization",
                                     'Authorization': `Bearer ${accessToken.access_token}`
                                 }
                              });
