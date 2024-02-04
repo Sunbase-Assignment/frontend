@@ -1,0 +1,50 @@
+
+.add-customer-page{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-customer-form{
+    border:1px solid black;
+    width: 50%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.input-wrapper{
+    width: 100%;
+    display: flex;
+}
+
+.form-sides{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.form-sides>input{
+    width: 80%;
+    height: 2rem;
+}
+
+.btns{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.save-btn{
+    width: 30%;
+    padding:0.5rem;
+}
