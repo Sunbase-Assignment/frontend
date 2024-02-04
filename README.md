@@ -6,10 +6,11 @@
    - For each data entry, there is an action field where users can perform edit and delete actions. Additionally, a "Sync" button is available; upon clicking, data is retrieved from a remote API and               stored in the database.
      
 #### Pages
-      -  sign-in page - where authorized users are allowed to perform actions, User authentication is required.
-      - Customer listing page - Fetching customer data from a MySQL database and displaying it on the front end.The data is presented in page format, and users can search for data using various fields.
-      - Add customer page - Adding new data to the database through the Add Customer page.
-      - Edit customer page - Editing existing data.
+
+    - sign-in page : where authorized users are allowed to perform actions, User authentication is required.
+    - Customer listing page : Fetching customer data from a MySQL database and displaying it on the front end.The data is presented in page format, and users can search for data using various fields.
+    - Add customer page : Adding new data to the database through the Add Customer page.
+    - Edit customer page : Editing existing data.
    
  ## Frontend
 
