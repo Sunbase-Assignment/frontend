@@ -1,4 +1,6 @@
 # Sun base Assignment - Customer list
+
+## Overview
   Basic application that performs CRUD operations on data
   -  sign-in page where authorized users are allowed to perform actions, User authentication is required.
   - Fetching customer data from a MySQL database and displaying it on the front end.
@@ -10,28 +12,42 @@
       - Customer data is fetched from the database and rendered in page format with pagination, allowing users to navigate between next or previous pages. The page features an "Add Customer" button to add             new customer data to the database. Following that, there is a "Search by" field and a search input area, enabling users to input search criteria based on the selected field.
       - For each data entry, there is an action field where users can perform edit and delete actions. Additionally, a "Sync" button is available; upon clicking, data is retrieved from a remote API and               stored in the database.
     
+ ## Frontend
+
+### Technologies Used
+- Frontend: HTML,CSS,Javascript,ReactJs
+- Backend: Spring boot
+- Database: MySQL
+- Authentication: JWT
  
-# Landing page - Sign In
+### Landing page - Sign In
 
 ![sign-in page](https://github.com/Sunbase-Assignment/frontend/assets/115056892/75b45f9a-f4e0-49cf-ae34-c4d161ad5375)
 
 
 
-# Customer listing page
+### Customer listing page
 
   ![customer-list page](https://github.com/Sunbase-Assignment/frontend/assets/115056892/de808501-87e8-4194-a553-bae85fcf5a24)
 
-# Add customer
+### Add customer
 
 ![add-customer-page](https://github.com/Sunbase-Assignment/frontend/assets/115056892/006b6b54-8c7b-499f-b118-4127735279c1)
 
 
-# Edit customer
+### Edit customer
 
 ![edit-customer-page](https://github.com/Sunbase-Assignment/frontend/assets/115056892/92e3f48a-4cc9-49db-ab3b-ace59d73a920)
 
 
+## Links
 
+- Linked in - https://www.linkedin.com/in/kumaresanm1597
+- Github - https://github.com/kumaresh1597
+
+## Reach me
+
+kumaresh.1597@gmail.com
 
 
 
