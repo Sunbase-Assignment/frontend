@@ -1,4 +1,4 @@
-# Sun base Assignment - Customer list
+# Customer CRUD Application
 
 ## Overview
   Basic application that performs CRUD operations on data
